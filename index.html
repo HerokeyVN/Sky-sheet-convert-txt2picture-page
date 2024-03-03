@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sky sheet convert</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Load local CSS -->
+	<link rel="stylesheet" href="style.css" type="text/css" media="all" />
+</head>
+
+<body>
+	<div id="text-editor"></div>
+
+	<label for="sheet-upload">Tải lên file sheet</label>
+	<input id="btn-upload" type="file" name="sheet-upload" accept=".txt, .json">
+
+	<label for="sheet-name">Tên bài hát: </label>
+	<input id="sheet-name" type="text" name="sheet-name">
+
+	<label for="author">Tác giả: </label>
+	<input id="author" type="text" name="author">
+
+	<label for="transcript">Người chuyển sheet: </label>
+	<input id="transcript" type="text" name="transcript">
+
+	<label for="key-symbol">Biểu tượng trên phím</label>
+	<select name="key-symbol" id="key-symbol">
+		<option value="cde">C-D-E-C2-D2-E2-...</option>
+		<option value="abc">A-B-C-A1-B1-C1-...</option>
+		<option value="123">1-2-3-8-9-10-...</option>
+		<option value="doremi">Do-Re-Mi-Do1-Re1-Mi1-...</option>
+	</select>
+
+	<label for="separation">Kí tự ngăn cách nốt: </label>
+	<input id="separation" type="text" name="separation" value=" ">
+
+	<label for="separation">Kí tự ngăn cách hợp âm: </label>
+	<input id="separation" type="text" name="separation" value="-">
+
+	<button type="button" name="convert">Chuyển đổi.</button>
+
+	<!-- Load editor lib -->
+	<script src="https://unpkg.com/codeflask/build/codeflask.min.js"></script>
+	<!-- Load local script -->
+	<script src="script.js" type="text/javascript" charset="utf-8"></script>
+</body>
+
+</html>
