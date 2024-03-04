@@ -10,7 +10,7 @@ const btnUpload = document.getElementById('btn-upload');
 btnUpload.addEventListener("change", (event) => {
 	let reader = new FileReader();
 	reader.onload = event => {
-		console.log(JSON.parse(event.target.result));
+		//console.log(JSON.parse(event.target.result));
 		flask.updateCode(JSON.stringify(JSON.parse(event.target.result), null, 2));
 	}
 	reader.onerror = error => {
@@ -35,5 +35,29 @@ flask.onUpdate(code=>{
 	author.value = json.author ? json.author:"";
 	transcript.value = json.transcribedBy ? json.transcribedBy:"";
 
-	console.log(json);
+	//console.log(json);
 })
+
+//Listen event input
+
+const inputEvent = event=>{
+	if (!event.target || !event.target.value) return;
+	try {
+		var json = JSON.parse(flask.getCode());
+	} catch (_) {
+		return event.target.value = "";
+	}
+	let map = {
+		"sheet-name": "name",
+		"author": "author",
+		"transcript": "transcribedBy"
+	}
+	if (!json[0] || !json[0][map[event.target.id]]) return event.target.value = "";;
+	json[0][map[event.target.id]] = event.target.value;
+	flask.updateCode(JSON.stringify(json, null, 2));
+};
+sheetName.addEventListener('change', inputEvent);
+author.addEventListener('change', inputEvent);
+transcript.addEventListener('change', inputEvent);
+
+//Convert to txt
